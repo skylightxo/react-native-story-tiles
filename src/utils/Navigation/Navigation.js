@@ -2,6 +2,7 @@ import React from "react";
 import { MainContainer } from "../../screens/Main/MainContainer";
 import ModeContainer from "../../screens/Mode/ModeContainer";
 import ModeDescriptionContainer from "../../screens/ModeDescription/ModeDescriptionContainer";
+import GameContainer from "../../screens/Game/GameContainer";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
@@ -18,6 +19,7 @@ export const Navigation = () => {
       >
         <Stack.Screen name="Main" component={MainContainer} />
         <Stack.Screen name="Mode" component={ModeContainer} />
+        <Stack.Screen name="Game" component={GameContainer} />
         <Stack.Screen
           name="ModeDescription"
           component={ModeDescriptionContainer}

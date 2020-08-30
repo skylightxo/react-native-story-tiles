@@ -20,6 +20,12 @@ export const ModeDescription = ({ navigation, title, description }) => {
     JosefinSans_700Bold,
   });
 
+  const handleOnPress = () => {
+    title === "Emoji"
+      ? navigation.navigate("Game")
+      : alert("Please choose emoji game mode");
+  };
+
   if (!fontsLoaded) {
     return <Text>Loading</Text>;
   }
@@ -43,7 +49,10 @@ export const ModeDescription = ({ navigation, title, description }) => {
           <Text style={styles.description}>{description}</Text>
         </View>
         <View>
-          <TouchableOpacity style={styles.continueBtn}>
+          <TouchableOpacity
+            style={styles.continueBtn}
+            onPress={() => handleOnPress()}
+          >
             <LinearGradient
               colors={["#6850FF", "#FF6FC5"]}
               style={{ borderRadius: 9, height: 56 }}

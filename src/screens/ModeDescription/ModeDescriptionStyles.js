@@ -30,8 +30,8 @@ export const styles = StyleSheet.create({
     color: "#000",
   },
   continueBtn: {
-    width: 280,
-    marginLeft: 70,
+    width: "50%",
+    marginHorizontal: 30,
     marginTop: 150,
   },
   continueBtnText: {
