@@ -1,7 +1,9 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-  modeContainer: { marginTop: 30 },
+  container: {
+    width: "100%",
+  },
   backNav: {
     width: 22,
     height: 25,
@@ -29,10 +31,18 @@ export const styles = StyleSheet.create({
     marginTop: 15,
     color: "#000",
   },
+  continueBtnContainer: {
+    width: 600,
+    justifyContent: "center",
+    flexDirection: "column",
+    alignItems: "center",
+  },
   continueBtn: {
     width: "50%",
-    marginHorizontal: 30,
-    marginTop: 150,
+    borderRadius: 9,
+    height: 56,
+    marginTop: 170,
+    marginRight: "30%",
   },
   continueBtnText: {
     paddingTop: 10,

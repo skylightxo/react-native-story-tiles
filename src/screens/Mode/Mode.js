@@ -1,4 +1,5 @@
 import React from "react";
+import BackNav from "../../images/back_nav.svg";
 import {
   View,
   Text,
@@ -29,10 +30,7 @@ export const Mode = ({ navigation }) => {
     <View style={styles.modeContainer}>
       <View>
         <TouchableWithoutFeedback onPress={() => navigation.goBack()}>
-          <Image
-            style={styles.backNav}
-            source={require("../../images/back_nav.png")}
-          />
+          <BackNav style={styles.backNav} />
         </TouchableWithoutFeedback>
       </View>
       <View

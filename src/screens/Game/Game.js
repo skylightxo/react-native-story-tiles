@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import BackNav from "../../images/back_nav_white.svg";
 import emojis from "emoji.json/emoji-compact.json";
 import {
   View,
@@ -16,6 +17,7 @@ import {
 } from "@expo-google-fonts/dev";
 
 export const Game = ({ navigation, title, description }) => {
+  const [gameState, setGameState] = useState(null);
   const getRandomEmoji = (min, max) => {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -23,6 +25,56 @@ export const Game = ({ navigation, title, description }) => {
     emojisCopy.splice(result, 1);
     return emojisCopy[result];
   };
+
+  const playAgainHandler = () => {
+    startGame();
+  };
+
+  const startGame = () => {
+    setGameState(game());
+  };
+
+  useEffect(() => {
+    startGame();
+  }, []);
+
+  const game = () => (
+    <View style={styles.gameContainer}>
+      <View style={styles.gameRow}>
+        <Text style={leftTopCell}>
+          {getRandomEmoji(0, emojisCopy.length + 1)}
+        </Text>
+        <Text style={styles.gameCell}>
+          {getRandomEmoji(0, emojisCopy.length + 1)}
+        </Text>
+        <Text style={rightTopCell}>
+          {getRandomEmoji(0, emojisCopy.length + 1)}
+        </Text>
+      </View>
+      <View style={styles.gameRow}>
+        <Text style={styles.gameCell}>
+          {getRandomEmoji(0, emojisCopy.length + 1)}
+        </Text>
+        <Text style={styles.gameCell}>
+          {getRandomEmoji(0, emojisCopy.length + 1)}
+        </Text>
+        <Text style={styles.gameCell}>
+          {getRandomEmoji(0, emojisCopy.length + 1)}
+        </Text>
+      </View>
+      <View style={styles.gameRow}>
+        <Text style={leftBottomCell}>
+          {getRandomEmoji(0, emojisCopy.length + 1)}
+        </Text>
+        <Text style={styles.gameCell}>
+          {getRandomEmoji(0, emojisCopy.length + 1)}
+        </Text>
+        <Text style={rightBottomCell}>
+          {getRandomEmoji(0, emojisCopy.length + 1)}
+        </Text>
+      </View>
+    </View>
+  );
 
   const emojisCopy = [...emojis];
 
@@ -41,63 +93,28 @@ export const Game = ({ navigation, title, description }) => {
   }
 
   return (
-    <View>
-      <LinearGradient
-        colors={["#6850FF", "#FF6FC5"]}
-        style={{ width: "100%", height: "100%" }}
-      >
-        <TouchableWithoutFeedback
-          onPress={() => navigation.navigate("ModeDescription")}
+    gameState && (
+      <View>
+        <LinearGradient
+          colors={["#6850FF", "#FF6FC5"]}
+          style={{ width: "100%", height: "100%" }}
         >
-          <Image
-            style={styles.backNav}
-            source={require("../../images/back_nav_white.png")}
-          />
-        </TouchableWithoutFeedback>
-        <View style={styles.gameContainer}>
-          <View style={styles.gameRow}>
-            <Text style={leftTopCell}>
-              {getRandomEmoji(0, emojisCopy.length + 1)}
-            </Text>
-            <Text style={styles.gameCell}>
-              {getRandomEmoji(0, emojisCopy.length + 1)}
-            </Text>
-            <Text style={rightTopCell}>
-              {getRandomEmoji(0, emojisCopy.length + 1)}
-            </Text>
-          </View>
-          <View style={styles.gameRow}>
-            <Text style={styles.gameCell}>
-              {getRandomEmoji(0, emojisCopy.length + 1)}
-            </Text>
-            <Text style={styles.gameCell}>
-              {getRandomEmoji(0, emojisCopy.length + 1)}
-            </Text>
-            <Text style={styles.gameCell}>
-              {getRandomEmoji(0, emojisCopy.length + 1)}
-            </Text>
-          </View>
-          <View style={styles.gameRow}>
-            <Text style={leftBottomCell}>
-              {getRandomEmoji(0, emojisCopy.length + 1)}
-            </Text>
-            <Text style={styles.gameCell}>
-              {getRandomEmoji(0, emojisCopy.length + 1)}
-            </Text>
-            <Text style={rightBottomCell}>
-              {getRandomEmoji(0, emojisCopy.length + 1)}
-            </Text>
-          </View>
-        </View>
-        <View>
-          <TouchableOpacity
-            style={styles.continueBtn}
-            onPress={() => navigation.push("Game")}
+          <TouchableWithoutFeedback
+            onPress={() => navigation.navigate("ModeDescription")}
           >
-            <Text style={styles.continueBtnText}>Play Again</Text>
-          </TouchableOpacity>
-        </View>
-      </LinearGradient>
-    </View>
+            <BackNav style={styles.backNav} />
+          </TouchableWithoutFeedback>
+          {gameState}
+          <View>
+            <TouchableOpacity
+              style={styles.continueBtn}
+              onPress={() => playAgainHandler()}
+            >
+              <Text style={styles.continueBtnText}>Play Again</Text>
+            </TouchableOpacity>
+          </View>
+        </LinearGradient>
+      </View>
+    )
   );
 };
